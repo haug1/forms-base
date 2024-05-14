@@ -19,12 +19,6 @@ const value = computed({
     formModel.updateElementValue(props.elementKey, value)
   }
 })
-
-onMounted(() => {
-  if (value.value === undefined && props.default !== undefined) {
-    value.value = props.default
-  }
-})
 </script>
 <template>
   <div v-if="model?.activeCondition">

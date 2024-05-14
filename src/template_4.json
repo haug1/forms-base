@@ -1,0 +1,25 @@
+[
+  {
+    "key": "input0",
+    "label": "Input 0",
+    "default": "asd"
+  },
+  {
+    "key": "input1",
+    "label": "Input 1",
+    "condition": "input0 == 'asd'",
+    "default": "asd"
+  },
+  {
+    "key": "input2",
+    "label": "Input 2",
+    "condition": "input1 == 'asd'",
+    "default": "asd"
+  },
+  {
+    "key": "input3",
+    "label": "Input 3",
+    "condition": "input2 == 'asd'",
+    "default": "asd"
+  }
+]

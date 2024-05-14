@@ -2,19 +2,10 @@
 import FormInput from './FormInput.vue'
 import { useFormModelStore } from './form-model'
 import type { ElementTemplate } from './types'
+import elementsJson from './template_200.json'
 
 const formModel = useFormModelStore()
-
-// const NUM_ELEMENTS = 200
-const NUM_ELEMENTS = 4
-const elements: ElementTemplate[] = Array.from({ length: NUM_ELEMENTS }, (_, i) => ({
-  key: `input${i}`,
-  label: `Input ${i}`,
-  condition: i > 0 ? `input${i - 1} == 'asd'` : undefined,
-  default: 'asd'
-}))
-
-formModel.setState(elements)
+formModel.setState(elementsJson as ElementTemplate[])
 </script>
 <template>
   <FormInput

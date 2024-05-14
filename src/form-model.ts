@@ -66,7 +66,7 @@ export const useFormModelStore = defineStore('form-model', () => {
       state.value = elements.map((element) => ({
         template: element,
         activeCondition: true,
-        value: undefined
+        value: element.default
       }))
     }
   }
