@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import FormInput from '@/components/FormInput.vue'
-import { useFormModelStore } from '@/stores/form-model'
-import { evaluate } from '@/utils/conditions'
-import { computed } from 'vue'
 
 export interface ElementTemplate {
   key: string
@@ -11,24 +8,16 @@ export interface ElementTemplate {
   default?: string
 }
 
-const { elements } = defineProps<{ elements: ElementTemplate[] }>()
-const formModel = useFormModelStore()
-
-const elementsWithContext = computed(() => {
-  return elements.map((element) => ({
-    element,
-    activeCondition: evaluate(element.condition, formModel.submitModel)
-  }))
-})
+const props = defineProps<{ elements: ElementTemplate[] }>()
 </script>
 <template>
   <ul>
-    <li v-for="{ element, activeCondition } in elementsWithContext" :key="element.key">
+    <li v-for="element in props.elements" :key="element.key">
       <FormInput
-        :active-condition="activeCondition"
         :label="element.label"
         :element-key="element.key"
         :default="element.default"
+        :condition="element.condition"
       />
     </li>
   </ul>

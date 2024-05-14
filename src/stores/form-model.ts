@@ -30,11 +30,8 @@ export const useFormModelStore = defineStore('form-model', () => {
       return acc
     }, {} as DataModel)
   )
-  function update(model: { [key: string]: ElementModel }) {
-    state.value = {
-      ...state.value,
-      ...model
-    }
+  function update(key: string, model: ElementModel) {
+    state.value[key] = model
   }
   return { state, submitModel, draftModel, update }
 })
