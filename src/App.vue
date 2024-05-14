@@ -1,24 +1,28 @@
 <script setup lang="ts">
-import RootForm, { type ElementTemplate } from '@/components/RootForm.vue'
+import FormInput from './FormInput.vue'
+import { useFormModelStore } from './form-model'
+import type { ElementTemplate } from './types'
 
-function generateElements() {
-  const NUM_ELEMENTS = 200
-  const elements: ElementTemplate[] = []
+const formModel = useFormModelStore()
 
-  for (let i = 0; i < NUM_ELEMENTS; i++) {
-    elements.push({
-      key: `input${i}`,
-      label: `Input ${i}`,
-      condition: i > 0 ? `input${i - 1} == 'asd'` : undefined,
-      default: 'asd'
-    })
-  }
+// const NUM_ELEMENTS = 200
+const NUM_ELEMENTS = 4
+const elements: ElementTemplate[] = Array.from({ length: NUM_ELEMENTS }, (_, i) => ({
+  key: `input${i}`,
+  label: `Input ${i}`,
+  condition: i > 0 ? `input${i - 1} == 'asd'` : undefined,
+  default: 'asd'
+}))
 
-  return elements
-}
-
-const elements = generateElements()
+formModel.setState(elements)
 </script>
 <template>
-  <RootForm :elements="elements" />
+  <FormInput
+    v-for="{ template } in formModel.state"
+    :key="template.key"
+    :label="template.label"
+    :element-key="template.key"
+    :condition="template.condition"
+    :default="template.default"
+  />
 </template>
